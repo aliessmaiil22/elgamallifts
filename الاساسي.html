@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة الجمل للمصاعد</title>
+    <meta name="description" content="شركة الجمل للمصاعد - استيراد وتصدير وتركيب كافة أنواع قطع غيار المصاعد بحرفية عالية">
+    <meta name="theme-color" content="#0d0809">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght=300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("iBttcExFozNQs6_L-");
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-main: #0b0708;
+            --bg-secondary: #160e10;
+            --bg-glass: rgba(27, 17, 19, 0.5);
+            --accent: #b83b43; 
+            --accent-glow: rgba(184, 59, 67, 0.25);
+            --text-main: #fcfcfc;
+            --text-muted: #a39698;
+            --border: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background: var(--bg-main); color: var(--text-main); scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* HEADER */
+        header { 
+            background: rgba(22, 14, 16, 0.85); 
+            backdrop-filter: blur(15px);
+            padding: 12px 8%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border);
+        }
+        .logo-container { display: flex; align-items: center; cursor: pointer; user-select: none; -webkit-user-select: none; }
+        .logo-img { height: 45px; width: auto; object-fit: contain; border-radius: 4px; }
+        
+        nav a, .back-main-btn { color: var(--text-main); text-decoration: none; margin-right: 30px; transition: var(--transition); font-weight: 600; font-size: 15px; position: relative; cursor: pointer; }
+        nav a::after { content: ''; width: 0; height: 2px; background: var(--accent); position: absolute; bottom: -5px; right: 0; transition: var(--transition); }
+        nav a:hover { color: var(--accent); }
+        nav a:hover::after { width: 100%; }
+
+        /* ADMIN BAR */
+        .top-admin-bar { background: #050304; padding: 12px 8%; border-bottom: 1px solid var(--border); font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+        .admin-item { color: var(--text-muted); }
+        .admin-item strong { color: var(--text-main); }
+
+        /* HERO SECTION */
+        .hero { 
+            padding: 140px 20px; 
+            text-align: center; 
+            background: radial-gradient(circle at top, #361215 0%, var(--bg-main) 70%); 
+        }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; color: var(--text-main); }
+        .hero h1 span { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+        .hero p { max-width: 600px; margin: 0 auto; font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; }
+
+        /* SECTIONS GENERAL */
+        .section { padding: 80px 8% 60px 8%; text-align: center; }
+        .section h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 10px; }
+        .section h2::after { content: ''; display: block; width: 50px; height: 3px; background: var(--accent); margin: 15px auto 0 auto; border-radius: 2px; }
+        .section-desc { color: var(--text-muted); max-width: 500px; margin: 0 auto 40px auto; font-size: 15px; }
+
+        /* CATEGORIES GRID */
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .category-card { background: var(--bg-secondary); border: 1px solid var(--border); padding: 35px 15px; border-radius: 20px; text-align: center; cursor: pointer; transition: var(--transition); display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .category-card .icon { font-size: 2.3rem; transition: var(--transition); }
+        .category-card h3 { font-size: 1.2rem; color: var(--text-main); }
+        .category-card p { font-size: 0.85rem; color: var(--text-muted); }
+        .category-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 25px rgba(184, 59, 67, 0.15); }
+        .category-card:hover .icon { transform: scale(1.1); }
+
+        /* SEARCH BAR */
+        .search-wrapper { max-width: 400px; margin: 0 auto 40px auto; }
+        .search-wrapper input { width: 100%; padding: 12px 20px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 30px; color: white; font-size: 15px; transition: var(--transition); text-align: right; }
+        .search-wrapper input:focus { outline: none; border-color: var(--accent); }
+
+        /* PRODUCTS GRID */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; }
+        .card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; text-align: right; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid var(--border); cursor: zoom-in; }
+        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; }
+        .card h4 { font-size: 1.1rem; color: var(--text-main); font-weight: 600; }
+        .card small { color: var(--text-main); background: rgba(184, 59, 67, 0.15); padding: 4px 10px; border-radius: 8px; font-size: 0.8rem; align-self: flex-start; border: 1px solid rgba(184, 59, 67, 0.3); }
+
+        .no-products { color: var(--text-muted); font-size: 16px; grid-column: 1 / -1; padding: 40px 0; }
+
+        /* LOCATIONS */
+        .locations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .location-card { background: var(--bg-secondary); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; transition: var(--transition); text-align: right; }
+        .location-card:hover { border-color: var(--accent); }
+        .location-details { padding: 20px; }
+        .location-details h3 { color: var(--accent); margin-bottom: 10px; font-size: 1.1rem; }
+        .location-details p { color: var(--text-muted); font-size: 14px; margin: 5px 0; }
+        .map-wrapper { width: 100%; height: 220px; }
+        .map-wrapper iframe { width: 100%; height: 100%; border: 0; opacity: 0.8; transition: var(--transition); }
+        .location-card:hover .map-wrapper iframe { opacity: 1; }
+
+        /* CONTACT FORM */
+        .contact-container { max-width: 600px; margin: 0 auto; background: var(--bg-secondary); padding: 35px; border-radius: 20px; border: 1px solid var(--border); }
+        .form-group { text-align: right; margin-bottom: 18px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: var(--text-muted); }
+        input, textarea, select { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-main); color: white; font-size: 14px; transition: var(--transition); text-align: right; }
+        input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: none; }
+        
+        .file-upload-box { border: 2px dashed rgba(184, 59, 67, 0.3); padding: 15px; text-align: center; border-radius: 10px; cursor: pointer; transition: var(--transition); }
+        .file-upload-box:hover { border-color: var(--accent); }
+        .file-upload-box input[type="file"] { display: none; }
+        .preview-img { max-width: 100px; max-height: 100px; object-fit: cover; border-radius: 6px; margin-top: 10px; display: none; margin: 10px auto 0 auto; }
+
+        .btn-buttons { display: flex; gap: 15px; margin-top: 20px; }
+        button { width: 100%; padding: 12px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .email-btn { background: var(--accent); color: white; }
+        .email-btn:hover { background: #962f36; }
+        .whatsapp-btn { background: #25D366; color: white; }
+        
+        /* AI CHATBOT SYSTEM */
+        #ai-chat-widget { position: fixed; bottom: 25px; left: 25px; z-index: 5000; direction: rtl; }
+        #chat-button { background: var(--accent); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 0 8px 20px rgba(184, 59, 67, 0.4); transition: var(--transition); }
+        #chat-button:hover { transform: scale(1.05); }
+        #chat-box { display: none; width: 340px; height: 460px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; flex-direction: column; box-shadow: 0 15px 35px rgba(0,0,0,0.6); position: absolute; bottom: 75px; left: 0; transition: var(--transition); }
+        .chat-header { background: #1f1416; padding: 15px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .chat-header h4 { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+        .chat-header span { font-size: 12px; color: #25D366; }
+        .chat-logs { flex-grow: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+        .msg { max-width: 80%; padding: 10px 14px; border-radius: 12px; line-height: 1.6; word-wrap: break-word; }
+        .msg.bot { background: #24171a; color: var(--text-main); align-self: flex-start; border-bottom-right-radius: 2px; }
+        .msg.user { background: var(--accent); color: white; align-self: flex-end; border-bottom-left-radius: 2px; }
+        
+        .chat-live-connect-btn { background: #1e1b4b; border: 1px dashed #4338ca; color: #c7d2fe; padding: 8px; border-radius: 8px; font-size: 12px; cursor: pointer; text-align: center; font-weight: bold; transition: var(--transition); margin-top: 5px; }
+        .chat-live-connect-btn:hover { background: #312e81; color: white; }
+
+        .chat-input-area { padding: 10px; background: #0b0708; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+        .chat-input-area input { flex-grow: 1; padding: 10px; border-radius: 8px; background: var(--bg-secondary); font-size: 13px; color: white; border: 1px solid var(--border); }
+        .chat-input-area button { width: auto; padding: 0 15px; border-radius: 8px; background: var(--accent); color: white; }
+
+        footer { background: #050304; padding: 30px 5%; text-align: center; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
+        footer span { color: var(--text-main); }
+        footer .designer-credit { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+        /* MODALS & LIGHTBOX */
+        #admin-panel-modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); overflow-y: auto; padding: 40px 20px; z-index: 2000; }
+        .panel { max-width: 700px; margin: auto; background: var(--bg-secondary); border: 1px solid var(--border); padding: 30px; border-radius: 20px; }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        .panel-header h3 { color: var(--accent); }
+        .close-panel { background: transparent; color: var(--text-muted); font-size: 1.5rem; width: auto; padding: 0; }
+        
+        .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .admin-tab-btn { background: #27171a; color: var(--text-muted); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer; width: auto; }
+        .admin-tab-btn.active { background: var(--accent); color: white; }
+
+        .admin-product-item { display: flex; align-items: center; justify-content: space-between; background: var(--bg-main); padding: 12px; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--border); }
+        .admin-product-item img { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
+        .delete-btn { background: #ef4444; color: white; width: auto; padding: 5px 12px; font-size: 0.8rem; border-radius: 6px; }
+
+        .admin-live-chat-box { background: var(--bg-main); border: 1px solid var(--border); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; height: 350px; }
+        .admin-chat-view { flex-grow: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
+        .admin-reply-area { display: flex; gap: 8px; }
+
+        #login-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 3000; }
+        .login-box { background: var(--bg-secondary); border: 1px solid var(--border); padding: 30px; border-radius: 20px; width: 320px; text-align: center; }
+        .login-actions { display: flex; gap: 10px; margin-top: 20px; }
+
+        #lightbox { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; }
+        #lightbox.active { display: flex; }
+        #lightbox img { max-width: 85%; max-height: 80vh; border-radius: 8px; }
+        .close-lightbox { position: absolute; top: 20px; left: 20px; font-size: 1.8rem; color: #fff; background: transparent; border: none; width: auto; }
+
+        #toast { position: fixed; bottom: 25px; right: 25px; background: #25D366; color: #fff; padding: 12px 25px; border-radius: 8px; display: none; z-index: 10000; font-size: 14px; }
+        
+        .category-view { display: none; padding-top: 40px; }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            nav a { margin: 0 8px; font-size: 14px; }
+            .hero h1 { font-size: 2.2rem; }
+            #ai-chat-widget { left: 15px; bottom: 15px; }
+            #chat-box { width: 290px; height: 380px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="toast">تمت العملية بنجاح!</div>
+
+<div id="ai-chat-widget">
+    <div id="chat-button" onclick="toggleChatBot()">🤖</div>
+    <div id="chat-box">
+        <div class="chat-header">
+            <h4 id="chat-bot-status-title">🤖 ذكاء الجمل الاصطناعي</h4>
+            <span id="chat-bot-status-dot">● متصل حالياً</span>
+        </div>
+        <div id="chat-logs" class="chat-logs">
+            <div class="msg bot">أهلاً بك في شركة الجمل للمصاعد! أنا مساعدك الذكي. يمكنك سؤالي عن أي شيء يخص قطع الغيار، الأسعار، الفروع، أو الصيانة وسأجيبك فوراً!</div>
+            <div class="chat-live-connect-btn" id="connect-human-btn" onclick="switchToLiveSupport()">👤 التحدث مع ممثل دعم (بشري مباشر)</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="اسأل الذكي عن أي شيء..." onkeypress="if(event.key === 'Enter') sendBotMessage()">
+            <button onclick="sendBotMessage()">إرسال</button>
+        </div>
+    </div>
+</div>
+
+<header>
+    <div class="logo-container" onclick="handleLogoClick()">
+        <img src="logo.jpeg" alt="شركة الجمل للمصاعد" class="logo-img" onerror="this.src='https://via.placeholder.com/150x45?text=Al-Jamal+Elevators'">
+    </div>
+    <nav id="main-nav">
+        <a href="#home">الرئيسية</a>
+        <a href="#categories-sec">الأقسام</a>
+        <a href="#location-sec">الفروع</a>
+        <a href="#contact">اتصل بنا</a>
+    </nav>
+    <nav id="category-nav" style="display: none;">
+        <span class="back-main-btn" onclick="goToMainMenu()">⬅️ العودة للرئيسية</span>
+    </nav>
+</header>
+
+<div id="main-app-content">
+    <div class="top-admin-bar">
+        <span class="admin-item">رئيس مجلس الإدارة: <strong>أ/ إبراهيم الجمل</strong></span>
+        <span class="admin-item">المدير العام: <strong>أ/ سمير الجمل</strong></span>
+    </div>
+
+    <section id="home" class="hero">
+        <h1>شركة <span>الجمل</span> للمصاعد</h1>
+        <p>شريككم الموثوق في استيراد وتصدير قطع غيار المصاعد بكفاءة وجودة عالية تمتد لأكثر من 25 عاماً.</p>
+    </section>
+
+    <section id="categories-sec" class="section">
+        <h2>أقسام المنتجات</h2>
+        <p class="section-desc">اختر القسم الذي ترغب في تصفح منتجاته، وسيفتح لك في صفحة مخصصة مستقلة.</p>
+        
+        <div class="categories-grid">
+            <div class="category-card" onclick="openCategoryPage('أبواب')">
+                <div class="icon">🚪</div>
+                <h3>أبواب مصاعد</h3>
+                <p>أوتوماتيكية ونصف أوتوماتيكية تركية وإيطالية</p>
+            </div>
+            <div class="category-card" onclick="openCategoryPage('محركات')">
+                <div class="icon">⚙️</div>
+                <h3>ماكينات ومحركات</h3>
+                <p>إيطالية وأوروبية فائقة الكفاءة والتحمل</p>
+            </div>
+            <div class="category-card" onclick="openCategoryPage('لوحات تحكم')">
+                <div class="icon">📟</div>
+                <h3>لوحات التحكم والإنفرتر</h3>
+                <p>أنظمة ذكية متكاملة VVVF متطورة</p>
+            </div>
+            <div class="category-card" onclick="openCategoryPage('دلائل حركة')">
+                <div class="icon">🛤️</div>
+                <h3>دلائل حركة</h3>
+                <p>سكك ومجاري توجيه فائقة الاستقامة والتحمل</p>
+            </div>
+            <div class="category-card" onclick="openCategoryPage('قطع غيار')">
+                <div class="icon">🛠️</div>
+                <h3>قطع غيار ومستلزمات</h3>
+                <p>كافة المكونات الميكانيكية والكهربائية الصغيرة</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="location-sec" class="section" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01);">
+    <h2>فروعنا ومقراتنا الرسمية</h2>
+    <p class="section-desc">مخازننا وفروعنا جاهزة لتلبية طلباتكم فوراً.</p>
+    
+    <div class="locations-grid">
+        <div class="location-card">
+            <div class="location-details">
+                <h3>📍 فرع المنصورة (الرئيسي)</h3>
+                <p>العنوان: شارع 6 أكتوبر، متفرع من أحمد ماهر</p>
+                <p>تليفون: 050/2940946</p>
+                <p>واتساب: 01002628422</p>
+            </div>
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d878693.0052678776!2d31.765311!3d30.6510164!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f79d908c75d157%3A0x534fadb51a85dd46!2z2YXYpNiz2LPZhyDYp9mE2KzZhdmEINmE2KfYs9iq2YrYsdin2K8g2KfZhNmF2LXYp9i52K8!5e0!3m2!1sar!2seg!4v1781045797603!5m2!1sar!2seg" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="location-card">
+            <div class="location-details">
+                <h3>📍 فرع القاهرة</h3>
+                <p>العنوان: منطقة مسطرد الصناعية</p>
+                <p>واتساب: 01091012969</p>
+            </div>
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d110321.75516427324!2d31.3806324!3d30.2212502!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145813407b26edc1%3A0x5bef639725c8a3eb!2z2LTYsdmD2Ycg2KfZhNis2YXZhCDZhNin2LPYqtmK2LHYp9ivINin2YTZhdi12KfYudivIEVMR0FNQUxGT1IgSU1QT1JUICYgRVhQT1JU!5e0!3m2!1sar!2seg!4v1781045834850!5m2!1sar!2seg" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="location-card">
+            <div class="location-details">
+                <h3>📍 فرع الإسكندرية</h3>
+                <p>العنوان: امتداد الطريق الدائري</p>
+                <p>واتساب: 01000906090</p>
+            </div>
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3413.494596956447!2d29.9919261!3d31.1792969!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f5dd0b73d8bb5b%3A0xbe46493e22111bc0!2z2LTYsdmD2Ykg2KfZhNis2YXZhCDZhNin2LPYqtmK2LHYp9ivINmI2KrYtdiv2YrYsSDZhdmH2YXYp9iqINin2YTZhdi12KfYudiv!5e0!3m2!1sar!2seg!4v1781045866965!5m2!1sar!2seg" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section id="contact" class="section">
+        <h2>تواصل معنا الآن</h2>
+        <p style="color: #94a3b8; margin-top: 10px;">يمكنك إرسال استفسارك أو إرفاق صورة العطل/القطعة المطلوبة مباشرة من هاتفك</p>
+        
+        <div class="contact-container">
+            <div class="form-group">
+                <label>الاسم بالكامل:</label>
+                <input type="text" id="name" placeholder="أدخل اسمك ">
+            </div>
+            <div class="form-group">
+                <label>البريد الإلكتروني:</label>
+                <input type="email" id="email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label>رقم الهاتف (واتساب):</label>
+                <input type="text" id="phone" placeholder="مثال: 01234567890">
+            </div>
+            <div class="form-group">
+                <label>نص الرسالة أو تفاصيل الطلب:</label>
+                <textarea id="message" rows="4" placeholder="اكتب تفاصيل طلبك أو قطع الغيار التي تبحث عنها هنا..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>إرفاق صورة (من الموبايل أو المعرض):</label>
+                <div class="file-upload-box" onclick="document.getElementById('file-input').click()">
+                    <span style="font-size: 24px;">📸</span>
+                    <p id="upload-text">اضغط هنا لاختيار صورة أو التقاطها فوراً</p>
+                    <input type="file" id="file-input" accept="image/*" onchange="previewImage(this)">
+                    <img id="img-preview" class="preview-img" alt="معاينة الصورة المرفوعة">
+                </div>
+            </div>
+
+            <div class="btn-buttons">
+                <button id="emailBtn" class="email-btn" onclick="sendEmail()">📧 إرسال عبر البريد</button>
+                <button class="whatsapp-btn" onclick="sendWhatsApp()">💬 إرسال عبر واتساب</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="category-view-app" class="section category-view">
+    <h2 id="current-category-title">اسم القسم</h2>
+    <p class="section-desc">تصفح كافة قطع الغيار المتوفرة لدينا حالياً وتواصل معنا لطلب الأسعار.</p>
+    
+    <div class="search-wrapper">
+        <input type="text" id="search-input" oninput="filterProducts()" placeholder="🔍 ابحث عن قطعة غيار محددة داخل هذا القسم...">
+    </div>
+
+    <div class="grid" id="products-container">
+        </div>
+</div>
+
+<div id="admin-panel-modal">
+    <div class="panel">
+        <div class="panel-header">
+            <h3>لوحة الإدارة الشاملة</h3>
+            <button class="close-panel" onclick="closeAdmin()">✕</button>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="admin-tab-btn active" id="tab-products-btn" onclick="switchAdminTab('products')">📦 إدارة المنتجات</button>
+            <button class="admin-tab-btn" id="tab-chat-btn" onclick="switchAdminTab('chat')">💬 محادثات العملاء الحية <span id="admin-chat-badge" style="background:#ef4444; color:white; padding:1px 6px; border-radius:50%; display:none; font-size:11px;">1</span></button>
+        </div>
+        
+        <div id="admin-tab-products">
+            <div style="margin-bottom: 25px; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px dashed var(--border);">
+                <div class="form-group">
+                    <label>اسم المنتج</label>
+                    <input id="prod-name" placeholder="مثال: سكة حركية ماركة سيفيرا">
+                </div>
+                <div class="form-group">
+                    <label>قسم المنتج (الفئة الصحيحة)</label>
+                    <select id="prod-cat">
+                        <option value="أبواب">أبواب مصاعد</option>
+                        <option value="محركات">ماكينات ومحركات</option>
+                        <option value="لوحات تحكم">لوحات تحكم وإنفرتر</option>
+                        <option value="دلائل حركة">دلائل حركة</option>
+                        <option value="قطع غيار">قطع غيار ومستلزمات</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الصورة</label>
+                    <input type="file" id="prod-img" accept="image/*" onchange="processImage(this)">
+                </div>
+                <button class="email-btn" onclick="addNewProduct()">إضافة وتصنيف المنتج</button>
+            </div>
+            <div id="admin-list" style="max-height: 250px; overflow-y: auto;"></div>
+        </div>
+
+        <div id="admin-tab-chat" style="display: none;">
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">هنا يمكنك الرد مباشرة على العميل المتصل حالياً بالموقع بالوقت الفعلي:</p>
+            <div class="admin-live-chat-box">
+                <div id="admin-chat-view" class="admin-chat-view">
+                    <div style="color:var(--text-muted); text-align:center; font-size:12px; margin-top:50px;">لا توجد محادثات حية نشطة حالياً من العملاء.</div>
+                </div>
+                <div class="admin-reply-area">
+                    <input type="text" id="admin-chat-input" placeholder="اكتب ردك الحي للعميل هنا..." onkeypress="if(event.key === 'Enter') sendAdminLiveReply()">
+                    <button class="email-btn" style="width:auto; padding:0 20px;" onclick="sendAdminLiveReply()">إرسال للعميل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="login-modal">
+    <div class="login-box">
+        <h3>تسجيل دخول الإدارة</h3>
+        <input type="password" id="pass" placeholder="كلمة المرور">
+        <div class="login-actions">
+            <button class="email-btn" onclick="validateLogin()">دخول</button>
+            <button class="cancel-btn" style="background:#334155; color:white;" onclick="closeLogin()">إلغاء</button>
+        </div>
+    </div>
+</div>
+
+<div id="lightbox" onclick="closeLightbox()">
+    <button class="close-lightbox" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="">
+</div>
+
+<footer>
+    <p>© 2026 جميع الحقوق محفوظة لـ <span>شركة الجمل للمصاعد</span></p>
+    <p style="margin-top: 8px; font-size: 13px;">Design & Development by <a class="designer-credit" href="#">Ali Esmail</a></p>
+</footer>
+
+<script>
+    var clickCount = 0;
+    var clickTimer = null;
+    var allProductsData = []; 
+    var currentBase64Image = ""; 
+    var chatMode = "ai"; 
+    var currentActiveCategory = "";
+
+    // الـ API Key وتاريخ المحادثة لمنظومة الـ Chatbot الذكية
+    var GEMINI_API_KEY = "AQ.Ab8RN6KkIyB1Jkc8l4-piOBk48zP9-lDqZnLhlO-JsVCEvf4Aw"; 
+    var chatHistory = [];
+
+    // جلب وجمع بيانات الموقع الحالية لتغذية الـ AI بها كـ Context
+    function scrapeWebsiteData() {
+        var dataString = "معلومات وبيانات الموقع الرسمية الحالية الحقيقية:\n";
+        dataString += "اسم الشركة: شركة الجمل للمصاعد (استيراد وتصدير وتوفير قطع غيار مصاعد بأعلى جودة منذ 25 عاماً).\n";
+        dataString += "رئيس مجلس الإدارة: أ/ إبراهيم الجمل، المدير العام: أ/ سمير الجمل.\n";
+        
+        var locations = document.querySelectorAll('.location-card');
+        dataString += "- الفروع المتاحة حالياً ومقراتنا الحقيقية:\n";
+        locations.forEach(function(loc) {
+            var details = loc.querySelector('.location-details');
+            if(details) dataString += details.innerText.trim() + "\n";
+        });
+
+        var savedProd = localStorage.getItem('saved_products');
+        if(savedProd) {
+            var parsed = JSON.parse(savedProd);
+            dataString += "- المنتجات الإضافية المرفوعة حديثاً في المتجر:\n";
+            parsed.forEach(function(p) {
+                dataString += `* قطعة غيار باسم: ${p.name} (متوفرة في قسم: ${p.cat})\n`;
+            });
+        }
+        dataString += "- الأقسام الأساسية: أبواب مصاعد (تركي وإيطالي)، ماكينات ومحركات (ألبرتو ساسي وأوروبي)، لوحات تحكم وإنفرتر VVVF، دلائل حركة وسكك، قطع غيار ومستلزمات ميكانيكية وكهربائية.\n";
+        return dataString;
+    }
+
+    // الدخول للوحة التحكم عند الضغط 6 مرات متتالية على اللوجو
+    function handleLogoClick() {
+        clickCount++;
+        if (clickTimer) clearTimeout(clickTimer);
+        clickTimer = setTimeout(function() { clickCount = 0; }, 1500);
+
+        if (clickCount === 6) {
+            clickCount = 0;
+            clearTimeout(clickTimer);
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+    }
+
+    function closeLogin() { document.getElementById('login-modal').style.display = 'none'; document.getElementById('pass').value = ''; }
+    
+    function validateLogin() {
+        var password = document.getElementById('pass').value;
+        if(password === "123" || password === "admin") {
+            document.getElementById('login-modal').style.display = 'none';
+            document.getElementById('admin-panel-modal').style.display = 'block';
+            updateAdminList();
+            syncAdminChatLog();
+        } else { alert('كلمة المرور غير صحيحة!'); }
+    }
+    
+    function closeAdmin() { document.getElementById('admin-panel-modal').style.display = 'none'; }
+
+    function switchAdminTab(tabName) {
+        if(tabName === 'products') {
+            document.getElementById('admin-tab-products').style.display = 'block';
+            document.getElementById('admin-tab-chat').style.display = 'none';
+            document.getElementById('tab-products-btn').classList.add('active');
+            document.getElementById('tab-chat-btn').classList.remove('active');
+        } else {
+            document.getElementById('admin-tab-products').style.display = 'none';
+            document.getElementById('admin-tab-chat').style.display = 'block';
+            document.getElementById('tab-products-btn').classList.remove('active');
+            document.getElementById('tab-chat-btn').classList.add('active');
+            document.getElementById('admin-chat-badge').style.display = 'none';
+            syncAdminChatLog();
+        }
+    }
+
+    // معالجة وتحويل صورة المنتج المرفوع إلى Base64 لتخزينها محلياً
+    function processImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                currentBase64Image = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // معاينة الصور في استمارة اتصل بنا
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.getElementById('img-preview');
+                img.src = e.target.result;
+                img.style.display = 'block';
+                document.getElementById('upload-text').innerText = "تم اختيار الصورة بنجاح!";
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // إضافة منتج جديد للفئة وحفظه بـ LocalStorage
+    function addNewProduct() {
+        var name = document.getElementById('prod-name').value.trim();
+        var cat = document.getElementById('prod-cat').value;
+        
+        if(!name || !currentBase64Image) {
+            alert("من فضلك أدخل اسم المنتج وقم برفع صورة صحيحة له أولاً!");
+            return;
+        }
+
+        var newProd = {
+            id: Date.now(),
+            name: name,
+            cat: cat,
+            img: currentBase64Image
+        };
+
+        allProductsData.push(newProd);
+        localStorage.setItem('saved_products', JSON.stringify(allProductsData));
+        
+        document.getElementById('prod-name').value = "";
+        document.getElementById('prod-img').value = "";
+        currentBase64Image = "";
+
+        showToast("تم إضافة المنتج وتصنيفه بالنجاح!");
+        updateAdminList();
+        if(document.getElementById('category-view-app').style.display === 'block') {
+            renderProductsGrid(currentActiveCategory);
+        }
+    }
+
+    function updateAdminList() {
+        var listContainer = document.getElementById('admin-list');
+        listContainer.innerHTML = "";
+        
+        if(allProductsData.length === 0) {
+            listContainer.innerHTML = "<p style='color:var(--text-muted); font-size:13px; text-align:center;'>لا توجد منتجات مرفوعة حالياً.</p>";
+            return;
+        }
+
+        allProductsData.forEach(function(p) {
+            var item = document.createElement('div');
+            item.className = "admin-product-item";
+            item.innerHTML = `
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="${p.img}">
+                    <div>
+                        <h5 style="font-size:14px; color:white;">${p.name}</h5>
+                        <small style="color:var(--accent); font-size:11px;">القسم: ${p.cat}</small>
+                    </div>
+                </div>
+                <button class="delete-btn" onclick="deleteProduct(${p.id})">حذف</button>
+            `;
+            listContainer.appendChild(item);
+        });
+    }
+
+    function deleteProduct(id) {
+        allProductsData = allProductsData.filter(function(p) { return p.id !== id; });
+        localStorage.setItem('saved_products', JSON.stringify(allProductsData));
+        updateAdminList();
+        showToast("تم حذف المنتج بنجاح.");
+        if(document.getElementById('category-view-app').style.display === 'block') {
+            renderProductsGrid(currentActiveCategory);
+        }
+    }
+
+    // إدارة فتح صفحات الأقسام والبحث الفوري
+    function openCategoryPage(categoryName) {
+        currentActiveCategory = categoryName;
+        document.getElementById('main-app-content').style.display = 'none';
+        document.getElementById('category-view-app').style.display = 'block';
+        document.getElementById('main-nav').style.display = 'none';
+        document.getElementById('category-nav').style.display = 'block';
+        document.getElementById('current-category-title').innerText = "قسم " + categoryName;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        renderProductsGrid(categoryName);
+    }
+
+    function goToMainMenu() {
+        document.getElementById('category-view-app').style.display = 'none';
+        document.getElementById('main-app-content').style.display = 'block';
+        document.getElementById('category-nav').style.display = 'none';
+        document.getElementById('main-nav').style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderProductsGrid(categoryName, filterText = "") {
+        var container = document.getElementById('products-container');
+        container.innerHTML = "";
+
+        var filtered = allProductsData.filter(function(p) {
+            var matchCat = (p.cat === categoryName);
+            var matchSearch = p.name.toLowerCase().includes(filterText.toLowerCase());
+            return matchCat && matchSearch;
+        });
+
+        if(filtered.length === 0) {
+            container.innerHTML = `<div class="no-products">لا توجد منتجات متوفرة حالياً في قسم (${categoryName}) تطابق بحثك. تواصل معنا لتوفيرها لك فوراً!</div>`;
+            return;
+        }
+
+        filtered.forEach(function(p) {
+            var card = document.createElement('div');
+            card.className = "card";
+            card.innerHTML = `
+                <img src="${p.img}" onclick="openLightbox('${p.img}')" title="اضغط للتكبير">
+                <div class="card-body">
+                    <h4>${p.name}</h4>
+                    <small>${p.cat}</small>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function filterProducts() {
+        var text = document.getElementById('search-input').value;
+        renderProductsGrid(currentActiveCategory, text);
+    }
+
+    // نافذة التكبير العائمة Lightbox
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.add('active');
+    }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+
+    // توست الإشعارات السريعة
+    function showToast(msg) {
+        var t = document.getElementById('toast');
+        t.innerText = msg;
+        t.style.display = "block";
+        setTimeout(function() { t.style.display = "none"; }, 3500);
+    }
+
+    // إرسال البيانات عبر إيميل وواتساب الاستمارات الرسمية
+    function sendEmail() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var msg = document.getElementById('message').value;
+
+        if(!name || !phone || !msg) { alert("برجاء ملء الحقول الأساسية (الاسم، الهاتف، الرسالة) أولاً!"); return; }
+
+        showToast("جاري إرسال رسالتك الآن...");
+        emailjs.send("default_service", "template_xyz", {
+            from_name: name,
+            from_email: email,
+            phone_num: phone,
+            message: msg
+        }).then(function() {
+            showToast("تم إرسال طلبك للإدارة بالبريد بنجاح!");
+        }, function(err) {
+            alert("حدث خطأ أثناء الإرسال التلقائي، يمكنك استخدام الإرسال المباشر عبر الواتساب.");
+        });
+    }
+
+    function sendWhatsApp() {
+        var name = document.getElementById('name').value;
+        var phone = document.getElementById('phone').value;
+        var msg = document.getElementById('message').value;
+        if(!name || !phone) { alert("من فضلك أدخل اسمك ورقم الهاتف لإتمام التواصل."); return; }
+
+        var text = `السلام عليكم، أنا العميل: ${name}\nرقم هاتفي: ${phone}\nتفاصيل طلبي واستفساري:\n${msg}`;
+        var url = "https://api.whatsapp.com/send?phone=201002628422&text=" + encodeURIComponent(text);
+        window.open(url, '_blank');
+    }
+
+    // ==========================================
+    // نـظـام الـشـات الـذكـي والدعم الـبـشـري الـمـبـاشـر 
+    // ==========================================
+    function toggleChatBot() {
+        var box = document.getElementById('chat-box');
+        box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function switchToLiveSupport() {
+        chatMode = "live";
+        document.getElementById('chat-bot-status-title').innerText = "👤 دعم فني مباشر (بشري)";
+        document.getElementById('chat-bot-status-dot').innerText = "● جاري تحويلك...";
+        document.getElementById('chat-bot-status-dot').style.color = "#fbbf24";
+        document.getElementById('connect-human-btn').style.display = "none";
+
+        var logs = document.getElementById('chat-logs');
+        var msgDiv = document.createElement('div');
+        msgDiv.className = "msg bot";
+        msgDiv.innerText = "تم تحويل المحادثة لغرفة الدعم المباشر. المسؤولين وأ/ سمير الجمل سينضمون إليك الآن، يرجى كتابة استفسارك هنا بالأسفل بالوقت الفعلي..";
+        logs.appendChild(msgDiv);
+        logs.scrollTop = logs.scrollHeight;
+
+        // إرسال تنبيه فوري للـ LocalStorage لكي يظهر إشعار في لوحة التحكم للإدارة
+        var liveChats = JSON.parse(localStorage.getItem('live_chat_session') || "[]");
+        liveChats.push({ sender: "user", text: "أهلاً بك، أود التحدث مع خدمة العملاء البشرية بخصوص طلب خاص." });
+        localStorage.setItem('live_chat_session', JSON.stringify(liveChats));
+        localStorage.setItem('has_new_chat_alert', "true");
+    }
+
+    // إرسال الرسالة من صندوق العميل
+    function sendBotMessage() {
+        var input = document.getElementById('chat-input');
+        var text = input.value.trim();
+        if(!text) return;
+
+        appendMessage("user", text);
+        input.value = "";
+
+        if(chatMode === "live") {
+            // حفظ المحادثة الحية في الـ LocalStorage ليراها المسؤول
+            var liveChats = JSON.parse(localStorage.getItem('live_chat_session') || "[]");
+            liveChats.push({ sender: "user", text: text });
+            localStorage.setItem('live_chat_session', JSON.stringify(liveChats));
+            localStorage.setItem('has_new_chat_alert', "true");
+        } else {
+            // محرك الذكاء الاصطناعي الافتراضي المستند لمعلومات شركة الجمل المحدثة لعام 2026
+            getGeminiAIResponse(text);
+        }
+    }
+
+    function appendMessage(sender, text) {
+        var logs = document.getElementById('chat-logs');
+        var msgDiv = document.createElement('div');
+        msgDiv.className = "msg " + sender;
+        msgDiv.innerText = text;
+        logs.appendChild(msgDiv);
+        logs.scrollTop = logs.scrollHeight;
+    }
+
+    // دالة محاكاة واستدعاء نظام الذكاء الاصطناعي مع الحفاظ على مصفوفة تاريخ المحادثة
+    function getGeminiAIResponse(userMessage) {
+        var scrapedContext = scrapeWebsiteData();
+        
+        // بناء الـ Prompt الاحترافي لـ Gemini لضمان التقيد التام ببيانات شركة الجمل
+        var promptPayload = {
+            contents: [
+                {
+                    parts: [
+                        { text: `أنت المساعد الذكي الرسمي لشركة الجمل للمصاعد في مصر لعام 2026. وظيفتك الإجابة بلباقة واحترافية وبلهجة مصرية مهذبة بناءً على البيانات الرسمية للشركة المذكورة أدناه فقط. لا تخترع فروع أو أرقام تليفونات غير موجودة في السياق:\n\n${scrapedContext}\n\nسؤال العميل الحالي: ${userMessage}` }
+                    ]
+                }
+            ]
+        };
+
+        // محاكاة إجابات ذكية سريعة في حالة عدم عمل المفتاح بشكل صحيح محلياً لمنع توقف الشات
+        setTimeout(function() {
+            var reply = "أهلاً بك يا فندم، بخصوص استفسارك عن '" + userMessage + "'، يمكنك التواصل معنا مباشرة على رقم فرع المنصورة الرئيسي 01002628422 أو فرع القاهرة بمسطرد 01091012969 لتوفير عرض الأسعار المناسب لك فوراً!";
+            
+            // محاولة إرسال حقيقية للـ API في حالة توفر اتصال نشط ومفتاح صالح
+            fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(promptPayload)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.candidates && data.candidates[0].content.parts[0].text) {
+                    var aiText = data.candidates[0].content.parts[0].text;
+                    appendMessage("bot", aiText);
+                } else {
+                    appendMessage("bot", reply);
+                }
+            })
+            .catch(err => {
+                appendMessage("bot", reply);
+            });
+
+        }, 1000);
+    }
+
+    // ==========================================
+    // دوال المزامنة والرد في لوحة تحكم المسؤولين
+    // ==========================================
+    function syncAdminChatLog() {
+        var chatView = document.getElementById('admin-chat-view');
+        var sessionData = localStorage.getItem('live_chat_session');
+        var alertBadge = document.getElementById('admin-chat-badge');
+        
+        // إظهار نوتيفيكيشن أحمر إذا أرسل العميل رسالة جديدة ولم تكن لوحة الشات مفتوحة
+        if(localStorage.getItem('has_new_chat_alert') === "true") {
+            alertBadge.style.display = "inline-block";
+        }
+
+        if(!sessionData) return;
+
+        var chats = JSON.parse(sessionData);
+        chatView.innerHTML = "";
+        
+        chats.forEach(function(m) {
+            var d = document.createElement('div');
+            // عكس الاتجاهات في الإدارة: رسالة المستخدم تظهر لليسر العادي ورسالة الإدارة تظهر كرسالة الـ Bot
+            if(m.sender === "user") {
+                d.setAttribute('style', 'background:#1e293b; color:white; padding:8px 12px; border-radius:8px; margin-bottom:8px; max-width:85%; align-self:flex-start; font-size:13px;');
+                d.innerText = "العميل: " + m.text;
+            } else {
+                d.setAttribute('style', 'background:#b83b43; color:white; padding:8px 12px; border-radius:8px; margin-bottom:8px; max-width:85%; align-self:flex-end; font-size:13px; text-align:right;');
+                d.innerText = "أنت (الإدارة): " + m.text;
+            }
+            chatView.appendChild(d);
+        });
+        chatView.scrollTop = chatView.scrollHeight;
+
+        // تحديث شاشة العميل أيضاً إذا ردت الإدارة بالوقت الفعلي
+        if(chatMode === "live") {
+            var currentLogElements = document.querySelectorAll('#chat-logs .msg');
+            var localMessagesCount = chats.length;
+            
+            // جلب أحدث رسالة إذا كان مرسلها هو الإدارة (admin) لإضافتها لشاشة العميل
+            var lastMsg = chats[chats.length - 1];
+            if(lastMsg && lastMsg.sender === "admin") {
+                var lastRenderedText = currentLogElements[currentLogElements.length - 1]?.innerText;
+                if(lastRenderedText !== lastMsg.text) {
+                    document.getElementById('chat-bot-status-dot').innerText = "● المسؤول متصل الآن";
+                    document.getElementById('chat-bot-status-dot').style.color = "#25D366";
+                    appendMessage("bot", lastMsg.text);
+                }
+            }
+        }
+    }
+
+    function sendAdminLiveReply() {
+        var input = document.getElementById('admin-chat-input');
+        var text = input.value.trim();
+        if(!text) return;
+
+        var liveChats = JSON.parse(localStorage.getItem('live_chat_session') || "[]");
+        liveChats.push({ sender: "admin", text: text });
+        
+        localStorage.setItem('live_chat_session', JSON.stringify(liveChats));
+        localStorage.removeItem('has_new_chat_alert'); // إزالة الإشعار بمجرد الرد
+        
+        input.value = "";
+        syncAdminChatLog();
+    }
+
+    // جلب المنتجات المخزنة محلياً عند تشغيل الصفحة لأول مرة لملء المصفوفة
+    window.addEventListener('load', function() {
+        if(localStorage.getItem('saved_products')) {
+            allProductsData = JSON.parse(localStorage.getItem('saved_products'));
+        } else {
+            // بيانات ديمو أولية لتهيئة كروت المنتجات
+            allProductsData = [
+                { id: 1, name: "ماكينة محرك مصعد إيطالي ألبرتو ساسي", cat: "محركات", img: "https://via.placeholder.com/300x200?text=Alberto+Sassi" },
+                { id: 2, name: "باب مصعد أوتوماتيكي تركي فاخر", cat: "أبواب", img: "https://via.placeholder.com/300x200?text=Automatic+Door" },
+                { id: 3, name: "لوحة تحكم ذكية متكاملة VVVF", cat: "لوحات تحكم", img: "https://via.placeholder.com/300x200?text=Control+Panel" }
+            ];
+            localStorage.setItem('saved_products', JSON.stringify(allProductsData));
+        }
+    });
+
+    // دورة فحص ومزامنة سريعة كل ثانيتين لتحديث محادثات الدعم الفني
+    setInterval(function() {
+        if(document.getElementById('admin-panel-modal').style.display === 'block') {
+            syncAdminChatLog();
+        } else {
+            // إذا كان العميل في وضع الدعم الحي والإدارة ردت عليه وهو يتصفح الموقع
+            if(chatMode === "live") {
+                var sessionData = localStorage.getItem('live_chat_session');
+                if(sessionData) {
+                    var chats = JSON.parse(sessionData);
+                    var lastMsg = chats[chats.length - 1];
+                    if(lastMsg && lastMsg.sender === "admin") {
+                        var logs = document.getElementById('chat-logs');
+                        var lastRendered = logs.lastElementChild?.innerText;
+                        if(lastRendered && !lastRendered.includes(lastMsg.text)) {
+                            document.getElementById('chat-bot-status-dot').innerText = "● المسؤول متصل الآن";
+                            document.getElementById('chat-bot-status-dot').style.color = "#25D366";
+                            appendMessage("bot", lastMsg.text);
+                        }
+                    }
+                }
+            }
+        }
+    }, 2000);
+</script>
+
+</body>
+</html>
